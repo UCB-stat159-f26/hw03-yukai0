@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tennis-career-hw3"
+version = "0.1.0"
+description = "A Python package to retrieve and visualize tennis players' career matches"
+readme = "README.md"
+
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "matplotlib",
+    "requests"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
