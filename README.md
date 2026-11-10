@@ -21,7 +21,7 @@ The package requires Python 3.10 or newer.
 The package provides two public functions:
 
 - `get_career_matches(player_name)`: Retrieves and cleans a player's career match data, returning a Pandas DataFrame.
-- `plot_career_matches(player_name)`: Retrieves a player's career match data and creates a scatter plot, returning a Matplotlib figure and axes.
+- `plot_career_matches(matches)`: Creates a scatter plot from a cleaned career match DataFrame, returning a Matplotlib figure and axes.
 
 Example:
 
@@ -36,11 +36,11 @@ matches = get_career_matches(player_name)
 print(matches.head())
 
 # Create a scatter plot
-fig, ax = plot_career_matches(player_name)
+fig, ax = plot_career_matches(matches)
 plt.show()
 ```
 
-The two functions can also be used independently. Users can retrieve a player's career match data without creating a graph, or generate a graph directly by providing a player's name.
+The first function retrieves and processes the player's match data, while the second function uses the resulting DataFrame to generate a scatter plot. The player's name is stored in the DataFrame and automatically formatted for the graph title.
 
 The scatter plot shows the player's age on the x-axis and the age difference between the player and their opponents on the y-axis. Wins and losses are represented separately, with a horizontal line at zero indicating opponents of the same age.
 
