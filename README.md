@@ -60,7 +60,7 @@ hw03-yukai0/
 │   └── test_plot.py
 ├── pyproject.toml
 ├── README.md
-└── ai.md
+└── ai_documentation.txt
 ```
 
 ## Data Source
