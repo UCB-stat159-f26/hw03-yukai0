@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import re
-from .data import *
 
 def _plot_points(ax, matches):
     wins = matches[matches["result"] == "W"]
@@ -93,8 +92,9 @@ def _create_plot(matches, player_name):
 
     return fig, ax
 
-def plot_career_matches(player_name):
-    """Retrieve a player's career matches and create a scatter plot."""
-    matches = get_career_matches(player_name)
+def plot_career_matches(matches):
+    """Create a scatter plot from cleaned match data."""
+    player_name = matches.attrs.get("player_name", "Player")
     display_name = _format_player_name(player_name)
     return _create_plot(matches, display_name)
+
