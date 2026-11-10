@@ -115,20 +115,19 @@ def _get_birthdate(name):
                 return pd.to_datetime(found.group(1), format="%Y-%m-%d")
 
     raise ValueError(f"Could not find birth date for '{name}'.")
-
-
-
-
+    
 
 def get_career_matches(player_name):
     """Retrieve and clean a player's career match data."""
     name = _normalize_name(player_name)
     records = _get_matches(name)
-    # birthday = _get_birthdate(name)
     birthday = _get_birthdate(name)
     data = _clean_matches(records, birthday)
 
     if data.empty:
         raise ValueError(f"No usable matches found for '{player_name}'.")
 
+    # remember the name of the player for plotting
+    data.attrs["player_name"] = player_name
     return data
+
