@@ -1,0 +1,21 @@
+AI Documentation
+
+1. data.py
+
+I used ChatGPT mainly to learn more about Python functions and web scraping techniques. I asked AI to explain different functions, methods, and approaches for retrieving and processing data from Tennis Abstract. This included learning how to parse JavaScript files, extract player birth dates from different webpages, and handle male and female match data. I also used AI to troubleshoot errors and explore ways to simplify my code. I experimented with different approaches and adjusted the examples based on what worked for my project.
+
+2. plot.py
+
+I used ChatGPT to better understand how to organize my existing Homework 2 plotting code into reusable functions. I asked AI about different ways to structure the plotting function, reuse the data retrieval function, and format player names correctly. Since I had already developed the original visualization in Homework 2, much of this work involved learning how to adapt and reorganize my existing code.
+
+3. test_data.py
+
+I used ChatGPT to learn more about writing Python tests with pytest and how to test individual functions. AI helped explain testing syntax, assertions, and how to use sample JavaScript files to verify data processing. I also asked for examples of tests for DataFrame contents, age calculations, and name formatting. I reviewed the examples, ran the tests, and made adjustments when errors occurred.
+
+4. test_plot.py
+
+I used ChatGPT to understand how to test Matplotlib figures and verify that graphs were generated correctly. AI helped me learn how to test plotting functions using local sample data and how to separate graph creation into a helper function. I used these ideas to develop tests that verify graph creation without accessing live servers.
+
+5. Writing and Documentation
+
+I used ChatGPT to help organize my README and explain the installation, usage, and testing instructions. I also used writing-assistance tools, such as Grammarly or similar tools, to improve the grammar, clarity, and wording of my sentences, including my personal reflection.
