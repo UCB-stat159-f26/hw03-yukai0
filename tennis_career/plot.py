@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+from .data import get_career_matches
 
 def _plot_points(ax, matches):
     wins = matches[matches["result"] == "W"]
@@ -77,6 +77,10 @@ def _add_labels(fig, ax, player_name, matches):
 
 def plot_career_matches(matches, player_name="Player"):
     """Create a scatter plot of the player's career matches."""
+    if isinstance(matches, str):
+        player_name = matches
+        matches = get_career_matches(player_name)
+
     if matches.empty or matches["player_age"].dropna().empty:
         raise ValueError("No valid match ages available for plotting.")
 
