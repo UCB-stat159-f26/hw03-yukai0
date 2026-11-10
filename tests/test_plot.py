@@ -1,8 +1,8 @@
+
 from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import pytest
@@ -11,8 +11,8 @@ from tennis_career.data import _parse_matches, _clean_matches
 from tennis_career.plot import plot_career_matches
 
 
-def test_nadal_plot():
-    """Check if Nadal's plot is correct"""
+def test_rafael_plot():
+    """Check that Nadal's matches are plotted correctly."""
     path = Path(__file__).parent / "test_data" / "MalePlayerCareer.js"
     records = _parse_matches(path.read_text(encoding="utf-8"))
     matches = _clean_matches(records, pd.Timestamp("1986-06-03"))
@@ -28,7 +28,7 @@ def test_nadal_plot():
 
 
 def test_serena_plot():
-    """Check if Williams's plot is correct"""
+    """Check that Serena Williams's matches are plotted correctly."""
     path = Path(__file__).parent / "test_data" / "FemalePlayerCareer.js"
     records = _parse_matches(path.read_text(encoding="utf-8"))
     matches = _clean_matches(records, pd.Timestamp("1981-09-26"))
@@ -42,9 +42,35 @@ def test_serena_plot():
 
     plt.close(fig)
 
+
+def test_plot_with_player_name(monkeypatch):
+    """Check that plotting by player name retrieves match data."""
+    path = Path(__file__).parent / "test_data" / "FemalePlayerCareer.js"
+    records = _parse_matches(path.read_text(encoding="utf-8"))
+    matches = _clean_matches(records, pd.Timestamp("1981-09-26"))
+
+    def fake_get_career_matches(player_name):
+        assert player_name == "Serena Williams"
+        return matches
+
+    monkeypatch.setattr(
+        "tennis_career.plot.get_career_matches",
+        fake_get_career_matches
+    )
+
+    fig, ax = plot_career_matches("Serena Williams")
+
+    assert "Serena Williams" in ax.get_title()
+    assert len(ax.collections[1].get_offsets()) == 3
+
+    plt.close(fig)
+
+
 def test_plot_empty_data():
-    """Check if plot empty data."""
-    empty = pd.DataFrame(columns=["player_age", "age_difference", "result"])
+    """Check that empty match data raises an error."""
+    empty = pd.DataFrame(
+        columns=["player_age", "age_difference", "result"]
+    )
 
     with pytest.raises(ValueError, match="No valid match ages"):
         plot_career_matches(empty)
